@@ -42,26 +42,24 @@ const Users = () => {
           <div className="col-12 col-md-10 col-lg-8 bg-white rounded p-3 shadow">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h4 className="m-0">User List</h4>
-              <Link to="/create" className="btn btn-success btn-sm">
-                Add+
-              </Link>
+              <Link to="/create" className="btn btn-success btn-sm">Add+</Link>
             </div>
             <div className="table-responsive" style={{ overflowX: "auto" }}>
               <table className="table table-bordered table-hover">
                 <thead className="table-dark">
                   <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Action</th>
+                    <th style={{ whiteSpace: "nowrap" }}>Name</th>
+                    <th style={{ whiteSpace: "nowrap" }}>Email</th>
+                    <th style={{ whiteSpace: "nowrap" }}>Address</th>
+                    <th style={{ whiteSpace: "nowrap" }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((user) => (
                     <tr key={user._id}>
-                      <td>{user.name}</td>
-                      <td style={{ wordBreak: "break-word" }}>{user.email}</td>
-                      <td style={{ whiteSpace: "pre-wrap" }}>{user.address}</td>
+                      <td style={{ whiteSpace: "nowrap" }}>{user.name}</td>
+                      <td style={{ whiteSpace: "nowrap" }}>{user.email}</td>
+                      <td style={{ whiteSpace: "nowrap" }}>{user.address}</td>
                       <td className="d-flex gap-2">
                         <Link to={`/update/${user._id}`} className="btn btn-success btn-sm">
                           Edit
