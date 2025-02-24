@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { backedURL } from "../App";
+
 
 const Users = () => {
   let [users, setUsers] = useState([]);
@@ -10,7 +12,7 @@ const Users = () => {
   useEffect(() => {
     async function userData() {
       try {
-        const userdata = await axios.get("http://localhost:3000/api/read");
+        const userdata = await axios.get(backedURL + "/api/read");
         const response = userdata.data;
         setUsers(response.user);
       } catch (error) {
@@ -24,7 +26,7 @@ const Users = () => {
   const handleDelete = async (id) => {
     try {
       const deleteUser = await axios.delete(
-        `http://localhost:3000/api/delete/${id}`
+        `${backedURL}/api/delete/${id}`
       );
       const response = deleteUser.data;
       if (response.success) {

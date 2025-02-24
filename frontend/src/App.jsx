@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Toaster } from "react-hot-toast";
 
+export const backedURL = import.meta.env.VITE_BACKEND_URL;
+
 function App() {
   return (
     <div>

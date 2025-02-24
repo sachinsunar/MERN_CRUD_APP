@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { backedURL } from "../App";
 
 const CreateUser = () => {
   const [user, setUser] = useState({
@@ -20,7 +21,7 @@ const CreateUser = () => {
     e.preventDefault();
     try {
       const addUser = await axios.post(
-        "http://localhost:3000/api/create",
+        backedURL + "/api/create",
         user
       );
       const response = addUser.data;

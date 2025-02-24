@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { backedURL } from "../App";
 
 const UpdateUsers = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const UpdateUsers = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getone/${id}`)
+      .get(`${backedURL}/api/getone/${id}`)
       .then((res) => {
         setUser(res.data.user);
       })
@@ -33,7 +34,7 @@ const UpdateUsers = () => {
     e.preventDefault();
     try {
       const updateUser = await axios.put(
-        `http://localhost:3000/api/update/${id}`,
+        `${backedURL}/api/update/${id}`,
         user
       );
       const response = updateUser.data;
