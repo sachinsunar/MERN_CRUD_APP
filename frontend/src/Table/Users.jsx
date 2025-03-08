@@ -50,36 +50,40 @@ const Users = () => {
               <h4 className="m-0">User List</h4>
               <Link to="/create" className="btn btn-success btn-sm">Add+</Link>
             </div>
-            <div className="table-responsive" style={{ overflowX: "auto" }}>
-              <table className="table table-bordered table-hover">
-                <thead className="table-dark">
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((user) => (
-                    <tr key={user._id}>
-                      <td>{user.name}</td>
-                      <td style={{ wordBreak: "break-word" }}>{user.email}</td>
-                      <td style={{ whiteSpace: "pre-wrap" }}>{user.address}</td>
-                      <td className="d-flex gap-2">
-                        <Link to={`/update/${user._id}`} className="btn btn-success btn-sm">
-                          Edit
-                        </Link>
-                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(user._id)}>
-                          Delete
-                        </button>
-                      </td>
+            {
+              loading ? <div>
+                <span className="spinner-border spinner-border-sm align-center" role="status" aria-hidden="true"></span>
+              </div> : <div className="table-responsive" style={{ overflowX: "auto" }}>
+                <table className="table table-bordered table-hover">
+                  <thead className="table-dark">
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              {users.length === 0 && <p className="text-center text-muted">No users found.</p>}
-            </div>
+                  </thead>
+                  <tbody>
+                    {users.map((user) => (
+                      <tr key={user._id}>
+                        <td>{user.name}</td>
+                        <td style={{ wordBreak: "break-word" }}>{user.email}</td>
+                        <td style={{ whiteSpace: "pre-wrap" }}>{user.address}</td>
+                        <td className="d-flex gap-2">
+                          <Link to={`/update/${user._id}`} className="btn btn-success btn-sm">
+                            Edit
+                          </Link>
+                          <button className="btn btn-danger btn-sm" onClick={() => handleDelete(user._id)}>
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {users.length === 0 && <p className="text-center text-muted">No users found.</p>}
+              </div>
+            }
           </div>
         </div>
       </div>
