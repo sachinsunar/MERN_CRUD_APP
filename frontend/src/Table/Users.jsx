@@ -50,44 +50,36 @@ const Users = () => {
               <h4 className="m-0">User List</h4>
               <Link to="/create" className="btn btn-success btn-sm">Add+</Link>
             </div>
-            {loading ? (
-              <div className="text-center py-3">
-                <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-              </div>
-            ) : (
-              <div className="table-responsive" style={{ overflowX: "auto" }}>
-                <table className="table table-bordered table-hover">
-                  <thead className="table-dark">
-                    <tr>
-                      <th style={{ whiteSpace: "nowrap" }}>Name</th>
-                      <th style={{ whiteSpace: "nowrap" }}>Email</th>
-                      <th style={{ whiteSpace: "nowrap" }}>Address</th>
-                      <th style={{ whiteSpace: "nowrap" }}>Action</th>
+            <div className="table-responsive" style={{ overflowX: "auto" }}>
+              <table className="table table-bordered table-hover">
+                <thead className="table-dark">
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user._id}>
+                      <td>{user.name}</td>
+                      <td style={{ wordBreak: "break-word" }}>{user.email}</td>
+                      <td style={{ whiteSpace: "pre-wrap" }}>{user.address}</td>
+                      <td className="d-flex gap-2">
+                        <Link to={`/update/${user._id}`} className="btn btn-success btn-sm">
+                          Edit
+                        </Link>
+                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(user._id)}>
+                          Delete
+                        </button>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {users.map((user) => (
-                      <tr key={user._id}>
-                        <td style={{ whiteSpace: "nowrap" }}>{user.name}</td>
-                        <td style={{ whiteSpace: "nowrap" }}>{user.email}</td>
-                        <td style={{ whiteSpace: "nowrap" }}>{user.address}</td>
-                        <td className="d-flex gap-2">
-                          <Link to={`/update/${user._id}`} className="btn btn-success btn-sm">
-                            Edit
-                          </Link>
-                          <button className="btn btn-danger btn-sm" onClick={() => handleDelete(user._id)}>
-                            {loading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : "Delete"}
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {users.length === 0 && <p className="text-center text-muted">No users found.</p>}
-              </div>
-            )}
+                  ))}
+                </tbody>
+              </table>
+              {users.length === 0 && <p className="text-center text-muted">No users found.</p>}
+            </div>
           </div>
         </div>
       </div>
