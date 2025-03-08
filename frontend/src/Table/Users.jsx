@@ -74,7 +74,7 @@ const Users = () => {
                             Edit
                           </Link>
                           <button className="btn btn-danger btn-sm" onClick={() => handleDelete(user._id)}>
-                            Delete
+                            {loading ? <span className="spinner-border spinner-border-sm align-center" role="status" aria-hidden="true"></span> : "Delete"}
                           </button>
                         </td>
                       </tr>
