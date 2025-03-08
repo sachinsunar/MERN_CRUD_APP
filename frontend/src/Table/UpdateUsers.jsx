@@ -13,6 +13,8 @@ const UpdateUsers = () => {
     address: "",
     phone: "",
   });
+
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -32,6 +34,7 @@ const UpdateUsers = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const updateUser = await axios.put(
         `${backedURL}/api/update/${id}`,
@@ -47,6 +50,8 @@ const UpdateUsers = () => {
     } catch (error) {
       console.log("Error:", error);
       toast.error(error.response?.data?.message || "Failed to update user.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,7 +112,9 @@ const UpdateUsers = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="btn btn-success mt-2">Update</button>
+            <button className="btn btn-success mt-2" >
+              {loading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : "update"}
+            </button>
           </form>
         </div>
       </div>

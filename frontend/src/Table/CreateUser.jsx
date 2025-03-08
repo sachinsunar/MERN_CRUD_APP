@@ -11,6 +11,8 @@ const CreateUser = () => {
     address: "",
     phone: "",
   });
+
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,6 +21,7 @@ const CreateUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const addUser = await axios.post(
         backedURL + "/api/create",
@@ -32,6 +35,8 @@ const CreateUser = () => {
       console.log(response);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false)
     }
     console.log(user);
   };
@@ -93,7 +98,9 @@ const CreateUser = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="btn btn-success mt-2">Submit</button>
+            <button className="btn btn-success mt-2">
+              {loading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : "submit"}
+            </button>
           </form>
         </div>
       </div>
